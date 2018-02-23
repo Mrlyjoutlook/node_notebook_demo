@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && DEBUG=watcher nodemon ./bin/index.js"
+    "jwt": "tsc && DEBUG=watcher nodemon ./bin/index.js jwt"
   },
   "dependencies": {
     "jsonwebtoken": "^8.1.1",
@@ -25,11 +25,13 @@
     "@types/koa-router": "^7.0.27",
     "@types/koa-static": "^4.0.0",
     "@types/koa-views": "^2.0.3",
+    "@types/mongoose": "^5.0.2",
     "debug": "^3.1.0",
     "fs-extra": "^5.0.0",
     "line-column": "^1.0.2",
     "nodemon": "^1.14.12",
     "tslint": "^5.9.1",
+    "types": "^0.1.1",
     "typescript": "^2.7.1"
   }
 }

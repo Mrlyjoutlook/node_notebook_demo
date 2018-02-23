@@ -1,25 +1,22 @@
-const App = require('../app/jwt');
 const watcher = require('./watch');
 const compiler = require('./compile');
 
-/**
- * development
- */
-const app = new App({
-  ROOT_PATH: __dirname,
-  watcher,
-  compiler,
-  env: 'development',
-  prot: 3000,
-});
+if (process.argv) {
+  const path = '../app/' + process.argv[2];
+  const App = require(path);
 
-/**
- * production
- */
-// const app = new App({
-//   ROOT_PATH: __dirname,
-//   env: 'production',
-//   prot: '3000',
-// });
+  /**
+  * development
+  */
+  const app = new App({
+    ROOT_PATH: __dirname,
+    watcher,
+    compiler,
+    env: 'development',
+    prot: 3000,
+  });
 
-app.run();
+  app.run();
+} else {
+  process.exit(1);
+}

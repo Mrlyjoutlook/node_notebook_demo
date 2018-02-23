@@ -4,8 +4,12 @@ const path = require('path');
 const resource = require('koa-static');
 const views = require('koa-views');
 const jwt = require('koa-jwt');
-const debug = require('debug')('app');
+const mongoose = require('mongoose');
 const routers = require('./routers');
+const config = require('./config/config');
+
+mongoose.connect(config.connect);
+mongoose.Promise = global.Promise;
 
 interface Options {
   [propName: string]: any;
@@ -63,9 +67,21 @@ class App {
     }));
     // 请求处理
     this.app.use(bodyParser());
+    this.app.use((ctx, next) => {
+      return next().catch((err) => {
+        if (401 === err.status) {
+          ctx.status = 401;
+          ctx.body = 'Protected resource, use Authorization header to get access\n';
+        } else {
+          throw err;
+        }
+      });
+    });
     // 验证
     this.app.use(jwt({
-      
+      secret: config.secret,
+    }).unless({
+      path: [/^\/public/]
     }));
     // 路由
     this.app.use(routers.routes()).use(routers.allowedMethods());

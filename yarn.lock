@@ -15,6 +15,12 @@
     "@types/express" "*"
     "@types/node" "*"
 
+"@types/bson@*":
+  version "1.0.6"
+  resolved "http://r.cnpmjs.org/@types/bson/download/@types/bson-1.0.6.tgz#8691f042d99dd163a5eb4dd6dde587d3449f7cda"
+  dependencies:
+    "@types/node" "*"
+
 "@types/connect@*":
   version "3.4.31"
   resolved "http://r.cnpmjs.org/@types/connect/download/@types/connect-3.4.31.tgz#1f92d6b117ecc05076c49ecd024f7976e528bad9"
@@ -117,6 +123,22 @@
 "@types/mime@*":
   version "2.0.0"
   resolved "http://r.cnpmjs.org/@types/mime/download/@types/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
+
+"@types/mongodb@*":
+  version "3.0.5"
+  resolved "http://r.cnpmjs.org/@types/mongodb/download/@types/mongodb-3.0.5.tgz#0143e0838a8260c7312773457f4d2ea1465ccada"
+  dependencies:
+    "@types/bson" "*"
+    "@types/events" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.0.2":
+  version "5.0.2"
+  resolved "http://r.cnpmjs.org/@types/mongoose/download/@types/mongoose-5.0.2.tgz#7fe0015bb473d70e33ac953cdc56d60a5fe2e3f9"
+  dependencies:
+    "@types/events" "*"
+    "@types/mongodb" "*"
+    "@types/node" "*"
 
 "@types/node@*":
   version "9.4.6"
@@ -2676,6 +2698,10 @@ type-is@^1.5.5, type-is@^1.6.14:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.18"
+
+types@^0.1.1:
+  version "0.1.1"
+  resolved "http://r.cnpmjs.org/types/download/types-0.1.1.tgz#860c6859d11366293f835d8c95aebcf95029838e"
 
 typescript@^2.7.1:
   version "2.7.2"
