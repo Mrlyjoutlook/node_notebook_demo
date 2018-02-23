@@ -7,6 +7,7 @@
     "jwt": "tsc && DEBUG=watcher nodemon ./bin/index.js jwt"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "jsonwebtoken": "^8.1.1",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",

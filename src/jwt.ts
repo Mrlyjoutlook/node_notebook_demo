@@ -1,15 +1,14 @@
 import * as Koa from 'koa';
+import * as mongoose from 'mongoose';
 const bodyParser = require('koa-bodyParser');
 const path = require('path');
 const resource = require('koa-static');
 const views = require('koa-views');
 const jwt = require('koa-jwt');
-const mongoose = require('mongoose');
 const routers = require('./routers');
 const config = require('./config/config');
 
 mongoose.connect(config.connect);
-mongoose.Promise = global.Promise;
 
 interface Options {
   [propName: string]: any;
@@ -81,7 +80,7 @@ class App {
     this.app.use(jwt({
       secret: config.secret,
     }).unless({
-      path: [/^\/public/]
+      path: ['/jwt/register', '/jwt/login']
     }));
     // 路由
     this.app.use(routers.routes()).use(routers.allowedMethods());

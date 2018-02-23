@@ -7,14 +7,6 @@ const UserSchema = new Schema({
   password: String,
 });
 
-UserSchema
-  .virtual('userInfo')
-  .get(function() {
-    return {
-      username: this.username,
-    };
-  });
+const UserModal = mongoose.model('User', UserSchema);
 
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
+module.exports = UserModal;

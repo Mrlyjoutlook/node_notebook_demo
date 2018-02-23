@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
+const mongoose = require("mongoose");
 const bodyParser = require('koa-bodyParser');
 const path = require('path');
 const resource = require('koa-static');
 const views = require('koa-views');
 const jwt = require('koa-jwt');
-const debug = require('debug')('app');
 const routers = require('./routers');
+const config = require('./config/config');
+mongoose.connect(config.connect);
 class App {
     constructor(options = {}) {
         if (!options.APP_PATH) {
@@ -42,6 +44,22 @@ class App {
             extension: 'ejs'
         }));
         this.app.use(bodyParser());
+        this.app.use((ctx, next) => {
+            return next().catch((err) => {
+                if (401 === err.status) {
+                    ctx.status = 401;
+                    ctx.body = 'Protected resource, use Authorization header to get access\n';
+                }
+                else {
+                    throw err;
+                }
+            });
+        });
+        this.app.use(jwt({
+            secret: config.secret,
+        }).unless({
+            path: ['/jwt/register', '/jwt/login']
+        }));
         this.app.use(routers.routes()).use(routers.allowedMethods());
     }
     run() {
