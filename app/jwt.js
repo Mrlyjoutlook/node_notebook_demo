@@ -71,4 +71,4 @@ class App {
     }
 }
 module.exports = App;
-//# sourceMappingURL=jwt.js.map
+//# sourceMappingURL=module.js.map

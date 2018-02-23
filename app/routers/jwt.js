@@ -7,4 +7,4 @@ router.post('/login', jwt.login);
 router.post('/register', jwt.register);
 router.post('/users', jwt.users);
 module.exports = router;
-//# sourceMappingURL=module.js.map
+//# sourceMappingURL=jwt.js.map

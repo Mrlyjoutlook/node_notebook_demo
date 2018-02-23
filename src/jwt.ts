@@ -66,6 +66,7 @@ class App {
     }));
     // 请求处理
     this.app.use(bodyParser());
+    // 权限校验失败处理中间件
     this.app.use((ctx, next) => {
       return next().catch((err) => {
         if (401 === err.status) {

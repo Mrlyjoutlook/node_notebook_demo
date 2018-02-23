@@ -1,11 +1,9 @@
-import * as Router from 'koa-router';
-
 const jsonwebtoken = require('jsonwebtoken');
 const UserModal = require('../models/users');
 const config = require('../config/config');
 
 class Jwt {
-  async login(ctx: Router.IRouterContext) {
+  async login(ctx: any) {
     const { body } = ctx.request;
     try {
       const user = await UserModal.findOne({ username: body.username });
@@ -40,7 +38,7 @@ class Jwt {
     }
   }
 
-  async register(ctx: Router.IRouterContext) {
+  async register(ctx: any) {
     const { body } = ctx.request;
     try {
       if (!body.username || !body.password) {
@@ -75,7 +73,7 @@ class Jwt {
     }
   }
 
-  async users(ctx: Router.IRouterContext) {
+  async users(ctx: any) {
     try {
       const { data } = ctx.state.user;
       const user = await UserModal.findOne({ _id: data });
