@@ -1,4 +1,5 @@
 module.exports = {
   secret: 'laibujishanggaofeng',
-  connect: 'mongodb://localhost:27017/node_notebook',
+  cookie: 'csrf-token',
+  connect: 'mongodb://localhost:27017/node_notebook'
 };

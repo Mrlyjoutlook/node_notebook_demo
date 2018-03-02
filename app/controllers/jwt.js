@@ -103,4 +103,4 @@ class Jwt {
     }
 }
 module.exports = new Jwt();
-//# sourceMappingURL=module.js.map
+//# sourceMappingURL=jwt.js.map

@@ -1,15 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
-const mongoose = require("mongoose");
 const bodyParser = require('koa-bodyParser');
 const path = require('path');
 const resource = require('koa-static');
 const views = require('koa-views');
-const jwt = require('koa-jwt');
+const CSRF = require('koa-csrf');
+const session = require('koa-session');
 const routers = require('./routers');
 const config = require('./config/config');
-mongoose.connect(config.connect);
 class App {
     constructor(options = {}) {
         if (!options.APP_PATH) {
@@ -17,6 +16,7 @@ class App {
         }
         this.options = options;
         this.app = new Koa();
+        this.app.keys = ['some secret hurr'];
     }
     startWatcher() {
         const Watcher = this.options.watcher;
@@ -33,7 +33,7 @@ class App {
             compiler.transpiler({
                 srcPath: fileInfo.path,
                 outPath: this.options.APP_PATH,
-                file: fileInfo.file,
+                file: fileInfo.file
             });
         });
         instance.watch();
@@ -44,21 +44,22 @@ class App {
             extension: 'ejs'
         }));
         this.app.use(bodyParser());
-        this.app.use((ctx, next) => {
-            return next().catch((err) => {
-                if (401 === err.status) {
-                    ctx.status = 401;
-                    ctx.body = 'Protected resource, use Authorization header to get access\n';
-                }
-                else {
-                    throw err;
-                }
-            });
-        });
-        this.app.use(jwt({
-            secret: config.secret,
-        }).unless({
-            path: ['/jwt/register', '/jwt/login']
+        this.app.use(session({
+            key: config.cookie,
+            maxAge: 86400000,
+            overwrite: true,
+            httpOnly: true,
+            signed: true,
+            rolling: false,
+            renew: false
+        }, this.app));
+        this.app.use(new CSRF({
+            invalidSessionSecretMessage: 'Invalid session secret',
+            invalidSessionSecretStatusCode: 403,
+            invalidTokenMessage: 'Invalid CSRF token',
+            invalidTokenStatusCode: 403,
+            excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+            disableQuery: false
         }));
         this.app.use(routers.routes()).use(routers.allowedMethods());
     }
@@ -71,4 +72,4 @@ class App {
     }
 }
 module.exports = App;
-//# sourceMappingURL=jwt.js.map
+//# sourceMappingURL=csrf.js.map
