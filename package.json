@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "jwt": "tsc && DEBUG=watcher nodemon ./bin/index.js jwt",
-    "csrf": "tsc && DEBUG=watcher nodemon --inspect ./bin/index.js csrf"
+    "csrf": "tsc && DEBUG=watcher nodemon ./bin/index.js csrf"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
