@@ -2,7 +2,7 @@ const watcher = require('./watch');
 const compiler = require('./compile');
 
 if (process.argv) {
-  const path = +process.argv[2];
+  const path = '../app/' + process.argv[2];
   const App = require(path);
 
   /**

@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "jwt": "tsc && DEBUG=watcher nodemon ./bin/index.js jwt",
-    "csrf": "tsc && DEBUG=watcher nodemon ./bin/index.js csrf"
+    "csrf": "tsc && DEBUG=watcher nodemon ./bin/index.js csrf",
+    "httpCache": "tsc && DEBUG=watcher nodemon ./bin/index.js httpCache"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
@@ -15,7 +16,9 @@
     "koa-bodyparser": "^4.2.0",
     "koa-csrf": "^3.0.6",
     "koa-jwt": "^3.3.0",
+    "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
+    "koa-send": "^4.1.3",
     "koa-session": "^5.8.1",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.3",
@@ -29,10 +32,12 @@
     "@types/koa-csrf": "^3.0.0",
     "@types/koa-jwt": "^3.3.0",
     "@types/koa-router": "^7.0.27",
+    "@types/koa-send": "^4.1.1",
     "@types/koa-session": "^5.7.1",
     "@types/koa-static": "^4.0.0",
     "@types/koa-views": "^2.0.3",
     "@types/mongoose": "^5.0.2",
+    "@types/node": "^9.4.7",
     "debug": "^3.1.0",
     "fs-extra": "^5.0.0",
     "line-column": "^1.0.2",
