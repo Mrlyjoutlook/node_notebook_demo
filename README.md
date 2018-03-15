@@ -24,6 +24,16 @@ yarn run csrf
 npm run csrf
 ```
 
+### http cache
+
+[详解]()
+
+```bash
+yarn run httpCache
+#or
+npm run httpCache
+```
+
 ## debug
 
 ```bash
