@@ -8,13 +8,16 @@
 </head>
 
 <body>
-  <img src="http://localhost:3000/httpCache/cache/rizhengen.jpg" />
   <h1>
     <%= title %>
   </h1>
   <p>EJS Welcome to
     <%= title %>
   </p>
+  <img src="http://localhost:3000/httpCache/cache/li.json" />
+  <h3>获取li.json，测试 Last-Modified/If-Modified-Since 头部信息的设置</h3>
+  <img src="http://localhost:3000/httpCache/cache/ei.json" />
+  <h3>获取li.json，测试 Etag/If-None-Match 头部信息的设置</h3>
 </body>
 
 </html>
